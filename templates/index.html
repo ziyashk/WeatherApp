@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}WeatherApp | Home{% endblock %}
+{% block content %}
+<main class="home-page">
+    <section class="hero-section">
+        <div class="hero-copy">
+            <p class="section-label">LIVE WEATHER INFORMATION</p>
+            <h1>Weather that helps you <span>plan.</span></h1>
+            <p class="hero-text">Search any city and get current weather, forecasts, hourly updates, details and useful alerts in one simple application.</p>
+            <form action="/weather" method="get" class="search-box">
+                <input type="text" name="city" placeholder="Enter city name e.g. Pune" required>
+                <button type="submit">Check Weather</button>
+            </form>
+            <div class="hero-links"><a href="/explore">Explore cities →</a><a href="/favorites">My favorites →</a></div><p class="project-credit">College Field Project • Developed by <strong>Ziya Shaikh</strong></p>
+        </div>
+        <div class="hero-visual"><div class="sun">☀️</div><div class="cloud cloud-one">☁</div><div class="cloud cloud-two">☁</div><div class="weather-bubble">Live API Data</div></div>
+    </section>
+
+    <section class="feature-section">
+        <div class="section-heading"><p class="section-label">WHAT YOU CAN CHECK</p><h2>Everything you need at a glance</h2></div>
+        <div class="feature-grid">
+            <a class="feature-card" href="/weather"><span>🌡️</span><h3>Current Weather</h3><p>Temperature, humidity, pressure and wind.</p></a>
+            <a class="feature-card" href="/forecast"><span>📅</span><h3>5-Day Forecast</h3><p>See the upcoming daily weather pattern.</p></a>
+            <a class="feature-card" href="/hourly"><span>🕐</span><h3>Hourly Forecast</h3><p>View the next available forecast time slots.</p></a>
+            <a class="feature-card" href="/alerts"><span>⚠️</span><h3>Weather Alerts</h3><p>Get simple condition-based warnings.</p></a>
+        </div>
+    </section>
+
+    <section class="how-section"><div class="section-heading"><p class="section-label">HOW IT WORKS</p><h2>Simple flow, live data</h2></div>
+        <div class="steps"><div><b>01</b><h3>Enter a city</h3><p>The user provides a city name.</p></div><div><b>02</b><h3>Python sends request</h3><p>Flask requests weather data from the API.</p></div><div><b>03</b><h3>API returns data</h3><p>The application receives live JSON data.</p></div><div><b>04</b><h3>View results</h3><p>Weather information is displayed in HTML/CSS.</p></div></div>
+    </section>
+</main>
+{% endblock %}
+
+

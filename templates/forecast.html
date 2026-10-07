@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}5-Day Forecast{% endblock %}
+{% block content %}
+<main class="app-page">
+{% if error %}<section class="error-box"><div class="error-icon">!</div><h2>{{ error }}</h2><form action="/forecast" method="get" class="weather-search small-search"><input name="city" placeholder="Enter city name" required><button>Search</button></form></section>
+{% else %}<section class="page-heading"><div><p class="section-label">UPCOMING WEATHER</p><h1>5-Day Forecast</h1><p>Forecast for {{ city }}</p></div><div class="heading-icon">📅</div></section>
+<section class="forecast-grid">{% for item in forecast %}<article class="forecast-card"><p class="forecast-date">{{ item.date }}</p><div class="forecast-icon">{{ item.icon }}</div><div class="forecast-temp">{{ item.temperature }}°C</div><p class="forecast-condition">{{ item.condition }}</p><div class="forecast-meta"><span>💧 {{ item.humidity }}%</span><span>💨 {{ item.wind }} m/s</span></div></article>{% endfor %}</section>
+<div class="page-actions"><a href="/weather?city={{ city|urlencode }}" class="outline-button">Current Weather</a><a href="/hourly?city={{ city|urlencode }}" class="primary-button">Hourly Forecast</a></div>
+<form action="/forecast" method="get" class="weather-search"><input name="city" placeholder="Check another city" required><button>Search</button></form>
+{% endif %}</main>
+{% endblock %}

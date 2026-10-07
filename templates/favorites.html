@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Favorite Cities{% endblock %}
+{% block content %}
+<main class="app-page"><section class="page-heading"><div><p class="section-label">YOUR SAVED CITIES</p><h1>Favorite Cities</h1><p>Quick access to the cities you check often.</p></div><div class="heading-icon">⭐</div></section>{% if message %}<div class="success-note">✓ {{ message }}</div>{% endif %}{% if favorites %}<section class="favorites-grid">{% for city_name in favorites %}<article class="favorite-card"><div><span>📍</span><h2>{{ city_name }}</h2><p>Saved city</p></div><div class="favorite-actions"><a href="/weather?city={{ city_name|urlencode }}">View Weather</a><a class="remove-link" href="/favorite/remove?city={{ city_name|urlencode }}">Remove</a></div></article>{% endfor %}</section>{% else %}<section class="empty-state"><div>⭐</div><h2>No favorite cities yet</h2><p>Open a city's Current Weather page and select “Add Favorite”.</p><a class="primary-button" href="/explore">Explore Cities</a></section>{% endif %}</main>
+{% endblock %}

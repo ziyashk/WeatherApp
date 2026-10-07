@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Current Weather{% endblock %}
+{% block content %}
+<main class="app-page">
+{% if error %}<section class="error-box"><div class="error-icon">!</div><h2>{{ error }}</h2><p>Try entering a valid city name.</p><form action="/weather" method="get" class="weather-search small-search"><input name="city" placeholder="Enter city name" required><button>Search</button></form></section>
+{% else %}
+<section class="page-heading"><div><p class="section-label">LIVE WEATHER</p><h1>Current Weather</h1><p>Live conditions for {{ city }}, {{ country }}</p></div><div class="heading-icon">{{ '☀️' if 'Clear' in main_condition else '☁️' }}</div></section>
+<section class="current-card"><div><p class="mini-label">CURRENT CONDITION</p><h2>{{ city }}</h2><div class="big-temp">{{ temperature }}°<span>C</span></div><p class="condition">{{ condition }}</p></div><div class="summary-grid"><div><span>💧 Humidity</span><strong>{{ humidity }}%</strong></div><div><span>💨 Wind Speed</span><strong>{{ wind }} m/s</strong></div><div><span>◉ Pressure</span><strong>{{ pressure }} hPa</strong></div><div><span>🌡️ Feels Like</span><strong>{{ feels_like }}°C</strong></div></div></section>
+<section class="quick-grid"><a href="/details?city={{ city|urlencode }}" class="quick-card"><span>📊</span><b>Weather Details</b><small>More information</small></a><a href="/forecast?city={{ city|urlencode }}" class="quick-card"><span>📅</span><b>5-Day Forecast</b><small>Upcoming days</small></a><a href="/hourly?city={{ city|urlencode }}" class="quick-card"><span>🕐</span><b>Hourly Forecast</b><small>Upcoming time slots</small></a><a href="/favorite/add?city={{ city|urlencode }}" class="quick-card"><span>⭐</span><b>Add Favorite</b><small>Save this city</small></a></section>
+<form action="/weather" method="get" class="weather-search"><input name="city" placeholder="Check another city" required><button>Search</button></form>
+{% endif %}
+{% endblock %}

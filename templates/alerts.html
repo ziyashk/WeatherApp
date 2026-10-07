@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Weather Alerts{% endblock %}
+{% block content %}
+<main class="app-page">{% if error %}<section class="error-box"><h2>{{ error }}</h2><form action="/alerts" method="get" class="weather-search small-search"><input name="city" placeholder="Enter city name" required><button>Search</button></form></section>{% else %}<section class="page-heading"><div><p class="section-label">CONDITION CHECK</p><h1>Weather Alerts</h1><p>Simple alerts based on the current conditions in {{ city }}.</p></div><div class="heading-icon">⚠️</div></section><section class="alert-list">{% for title, text in alerts %}<article class="alert-card"><div class="alert-symbol">{% if title == 'No Major Alert' %}✓{% else %}!{% endif %}</div><div><h2>{{ title }}</h2><p>{{ text }}</p></div></article>{% endfor %}</section><div class="alert-current"><span>{{ '☀️' if main_condition == 'Clear' else '☁️' }}</span><div><b>Current: {{ temperature }}°C • {{ condition }}</b><small>Humidity {{ humidity }}% • Wind {{ wind }} m/s</small></div></div><form action="/alerts" method="get" class="weather-search"><input name="city" placeholder="Check another city" required><button>Search</button></form>{% endif %}
+</main>
+{% endblock %}

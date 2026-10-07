@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}WeatherApp{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo"><span class="logo-cloud">☁</span> Weather<span>App</span></div>
+    <nav>
+        <a href="/" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+        <a href="/weather{% if city %}?city={{ city|urlencode }}{% endif %}" class="{{ 'active' if request.path == '/weather' else '' }}">Current Weather</a>
+        <a href="/forecast{% if city %}?city={{ city|urlencode }}{% endif %}" class="{{ 'active' if request.path == '/forecast' else '' }}">Forecast</a>
+        <a href="/hourly{% if city %}?city={{ city|urlencode }}{% endif %}" class="{{ 'active' if request.path == '/hourly' else '' }}">Hourly</a>
+        <a href="/details{% if city %}?city={{ city|urlencode }}{% endif %}" class="{{ 'active' if request.path == '/details' else '' }}">Details</a>
+        <a href="/explore" class="{{ 'active' if request.path == '/explore' else '' }}">Explore</a>
+        <a href="/favorites" class="{{ 'active' if request.path == '/favorites' else '' }}">Favorites</a>
+        <a href="/alerts{% if city %}?city={{ city|urlencode }}{% endif %}" class="{{ 'active' if request.path == '/alerts' else '' }}">Alerts</a>
+        <a href="/about" class="{{ 'active' if request.path == '/about' else '' }}">About</a>
+    </nav>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="footer"><p>© 2026 WeatherApp • Built with Python &amp; Flask</p><p class="footer-author">Developed by <strong>Ziya Shaikh</strong></p></footer>
+</body>
+</html>
